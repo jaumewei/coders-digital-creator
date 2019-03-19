@@ -21,26 +21,25 @@ class CodersDigitalCreatorApp extends CodersApp{
 
     }
     /**
+     * Route/Endpoint locale dictionary
      * @return array
      */
     protected function endPointLocale() {
         
-        $override = parent::endPointLocale();
+        //$override = parent::endPointLocale();
         
-        $app = strval($this);
-        $locale = get_locale();
-        
-        $override[ $app ][$locale] = 'creador-digital';
-        $override[ $app ]['en-US'] = 'digital-creator';
-        $override[ $app ]['en-GB'] = 'digital-creator';
-        
-        $override[ 'affiliates' ] = array(
-
-            $locale => 'afiliados',
-
+        return array(
+            $this->endPointName() => array(
+                'es_ES' => 'creador-digital',
+                'en_US' => 'digital-creator',
+                'en_GB' => 'digitaler',
+            ),
+            'affiliates' => array(
+                'es_ES' => 'afiliados',
+                'en_GB' => 'affiliates',
+                'en_US' => 'affiliates',
+            ),
         );
-        
-        return $override;
     }
     /**
      * @return \CodersDigitalCreatorApp

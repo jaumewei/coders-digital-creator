@@ -1,3 +1,3 @@
 <?php defined('ABSPATH') or die; ?>
-<h1>:D</h1>
-<strong>Layout <?php print __FILE__; ?></strong>
+<h1>Displaying layout :D</h1>
+<p><?php print __FILE__ ?></p>

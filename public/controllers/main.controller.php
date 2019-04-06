@@ -10,11 +10,11 @@ final class MainController extends \CODERS\Framework\Controller{
      */
     protected function default_action( \CODERS\Framework\Request $request) {
         
-        $display = $this->renderer();
-        
-        if( $display !== FALSE ){
+        $render = $this->renderer();
+
+        if( $render !== FALSE ){
             
-            $display->setLayout()->display();
+            $render->setLayout()->display();
         }
         
         return $this;

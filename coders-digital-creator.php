@@ -13,18 +13,12 @@
  * @author Jaume Llopis <jaume@mnkcoder.com>
  ******************************************************************************/
 
-register_activation_hook(__FILE__, function( ){
-
-    //base de datos y activación de dependencias
-
-});
-
 //carga de la instancia
 add_action('plugins_loaded',function(){
     
     if( defined('CODERS_FRAMEWORK_BASE') && class_exists('CodersApp') ){
         
-        if( !is_null( CodersApp::init('coders-digital-creator') ) ){
+        if( CodersApp::init('coders-digital-creator') ){
             
             //done!!!
             //die(CodersDigitalCreatorApp::class);
@@ -36,5 +30,31 @@ add_action('plugins_loaded',function(){
 });
 
 
+/**
+ * Setup installation/uninstallation hooks
+ */
 
+register_activation_hook(__FILE__, function( ){
 
+    //base de datos y activación de dependencias
+    if( defined('CODERS_FRAMEWORK_BASE') && class_exists('CodersApp') ){
+        
+        $installer = CodersApp::installer('coders-digital-creator','digitor');
+        
+        if( !is_null($installer) &&  $installer->install() ){
+
+        }
+    }
+});
+
+register_deactivation_hook(__FILE__, function(){
+    //base de datos y activación de dependencias
+    if( defined('CODERS_FRAMEWORK_BASE') && class_exists('CodersApp') ){
+        
+        $installer = CodersApp::installer('coders-digital-creator','digitor');
+        
+        if( !is_null($installer) &&  $installer->uninstall() ){
+        
+        }
+    }
+});

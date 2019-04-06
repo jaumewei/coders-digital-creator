@@ -5,7 +5,7 @@ defined('ABSPATH') or die;
 /**
  * 
  */
-class MainView extends Renderer{
+class MainDocument extends DocumentRender{
     
     protected function __construct(\CodersApp $app) {
         

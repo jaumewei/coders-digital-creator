@@ -8,7 +8,8 @@ class CodersDigitalCreatorApp extends CodersApp{
      */
     protected final function __construct(  ) {
         
-        $this->register('test',parent::TYPE_PROVIDERS);
+        $this->register('test',parent::TYPE_PROVIDERS)
+                ->register('test', parent::TYPE_MODELS, TRUE );
         
         parent::__construct( 'digitor' );
     }

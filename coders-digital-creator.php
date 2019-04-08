@@ -25,6 +25,9 @@ add_action('plugins_loaded',function(){
             //initialize some extra content here
             //var_dump( CodersDigitalCreatorApp::instance() );
             //die;
+            
+            //var_dump( CodersApp::installer('coders-digital-creator','digitor') );
+            //die;
         }
     }
 });
@@ -39,10 +42,15 @@ register_activation_hook(__FILE__, function( ){
     //base de datos y activación de dependencias
     if( defined('CODERS_FRAMEWORK_BASE') && class_exists('CodersApp') ){
         
-        $installer = CodersApp::installer('coders-digital-creator','digitor');
+        $installer = CodersApp::installer(__DIR__,'digitor');
         
         if( !is_null($installer) &&  $installer->install() ){
-
+            add_action( 'admin_notices', function() use( $installer ){
+                foreach( $installer->report() as $message ){
+                    printf('<div class="notice notice-success is-dismissible"><p>%s</p></div>',
+                        __($message,'coders_digital_creator'));
+                }
+            } );
         }
     }
 });
@@ -51,10 +59,18 @@ register_deactivation_hook(__FILE__, function(){
     //base de datos y activación de dependencias
     if( defined('CODERS_FRAMEWORK_BASE') && class_exists('CodersApp') ){
         
-        $installer = CodersApp::installer('coders-digital-creator','digitor');
+        $installer = CodersApp::installer(__DIR__,'digitor');
         
         if( !is_null($installer) &&  $installer->uninstall() ){
-        
+            add_action( 'admin_notices', function() use( $installer ){
+                var_dump($installer);
+                foreach( $installer->report() as $message ){
+                    printf('<div class="notice notice-success is-dismissible"><p>%s</p></div>',
+                        __($message,'coders_digital_creator'));
+                }
+            } );
         }
     }
 });
+
+

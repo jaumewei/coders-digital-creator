@@ -7,6 +7,48 @@ defined('ABSPATH') or die;
  */
 class Setup extends Installer{
     /**
+     * Media Table
+     * @param string $prefix
+     * @param string $collation
+     * @return String
+     */
+    private final function sql_media_table( $prefix , $collation ){
+
+        return sprintf("CREATE TABLE `%scoders_digitor_media` (
+        `id` varchar(32) NOT NULL,
+        `parent_id` varchar(32) NOT NULL,
+        `title` varchar(128) NOT NULL,
+        `content_type` varchar(8) NOT NULL,
+        `status` tinyint(1) NOT NULL,
+        `date_created` datetime NOT NULL,
+        `date_updated` datetime NOT NULL,
+        PRIMARY KEY (`id`)
+        ) %s", $prefix, $collation);
+    }
+    /**
+     * Posts Table
+     * @param string $prefix
+     * @param string $collation
+     * @return String
+     */
+    private final function sql_posts_table( $prefix , $collation ){
+
+        return sprintf("CREATE TABLE `%scoders_digitor_posts` (
+            `id` varchar(32) NOT NULL,
+            `title` varchar(64) NOT NULL,
+            `content` text NOT NULL,
+            `thumbnail` int(11) NOT NULL,
+            `parent_id` varchar(32) NOT NULL,
+            `type` varchar(8) NOT NULL,
+            `status` tinyint(1) NOT NULL,
+            `acl` varchar(32) NOT NULL,
+            `order_id` int(11) NOT NULL DEFAULT '0',
+            `date_created` datetime NOT NULL,
+            `date_updated` datetime NOT NULL,
+            PRIMARY KEY (`id`)
+           ) %s", $prefix, $collation);
+    }
+    /**
      * Accounts Table
      * @param string $prefix
      * @param string $collation
@@ -94,6 +136,8 @@ class Setup extends Installer{
         $roles_table = $this->sql_roles_table($wpdb->prefix, $charset_collate);
         $subscriptions_table = $this->sql_subscriptions_table($wpdb->prefix, $charset_collate);
         $sessions_table = $this->sql_sessions_table($wpdb->prefix, $charset_collate);
+        $media_table = $this->sql_media_table($wpdb->prefix, $charset_collate);
+        $posts_table = $this->sql_posts_table($wpdb->prefix, $charset_collate);
         
         
         require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
@@ -102,6 +146,8 @@ class Setup extends Installer{
         dbDelta( $roles_table );
         dbDelta( $subscriptions_table );
         dbDelta( $sessions_table);
+        dbDelta( $media_table);
+        dbDelta( $posts_table);
         
         return parent::install();
     }
@@ -120,11 +166,15 @@ class Setup extends Installer{
         $drop_roles = sprintf('DROP TABLE IF EXISTS %scoders_digitor_roles',$wpdb->prefix);
         $drop_subscriptions = sprintf('DROP TABLE IF EXISTS %scoders_digitor_subscriptions',$wpdb->prefix);
         $drop_sessions = sprintf('DROP TABLE IF EXISTS %scoders_digitor_sessions',$wpdb->prefix);
+        $drop_posts = sprintf('DROP TABLE IF EXISTS %scoders_digitor_posts',$wpdb->prefix);
+        $drop_media = sprintf('DROP TABLE IF EXISTS %scoders_digitor_media',$wpdb->prefix);
 
         $wpdb->query( $drop_accounts);
         $wpdb->query( $drop_roles);
         $wpdb->query( $drop_subscriptions);
         $wpdb->query( $drop_sessions);
+        $wpdb->query( $drop_posts);
+        $wpdb->query( $drop_media);
 
             //delete_option("my_plugin_db_version");
 

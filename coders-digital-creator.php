@@ -20,14 +20,6 @@ add_action('plugins_loaded',function(){
         
         if( CodersApp::init('coders-digital-creator') ){
             
-            //done!!!
-            //die(CodersDigitalCreatorApp::class);
-            //initialize some extra content here
-            //var_dump( CodersDigitalCreatorApp::instance() );
-            //die;
-            
-            //var_dump( CodersApp::installer('coders-digital-creator','digitor') );
-            //die;
         }
     }
 });

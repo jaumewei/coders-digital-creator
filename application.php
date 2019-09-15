@@ -11,6 +11,8 @@ class CodersDigitalCreatorApp extends CodersApp{
         $this->register('test',parent::TYPE_PROVIDERS)
                 ->register('test', parent::TYPE_MODELS, TRUE );
         
+        $this->registerAdminPage( 'dashboard' );
+        
         parent::__construct( 'digitor' );
     }
     /**

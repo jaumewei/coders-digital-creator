@@ -11,9 +11,17 @@ class CodersDigitalCreatorApp extends CodersApp{
         $this->register('test',parent::TYPE_PROVIDERS)
                 ->register('test', parent::TYPE_MODELS, TRUE );
         
-        $this->registerAdminPage( 'dashboard' );
-        
         parent::__construct( 'digitor' );
+    }
+    /**
+     * 
+     * @return \CODERS\Framework\Controller[]
+     */
+    protected final function importAdminMenu() {
+        
+        return array(
+            'main' => $this->createController('Main')
+        );
     }
     /**
      * 
@@ -27,9 +35,9 @@ class CodersDigitalCreatorApp extends CodersApp{
      * Route/Endpoint locale dictionary
      * @return array
      */
-    protected function endPointLocale() {
+    protected function importRoutes() {
         
-        //$override = parent::endPointLocale();
+        //$override = parent::importRoutes();
         
         return array(
             $this->endPointName() => array(

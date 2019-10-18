@@ -8,15 +8,14 @@ final class MainController extends \CODERS\Framework\Controller{
      * @param \CODERS\Framework\Request $request
      * @return $this
      */
-    protected function default_action( \CODERS\Framework\Request $request) {
-        
-        $render = $this->renderer();
+    protected function default_action( \CODERS\Framework\Request $request = NULL ) {
 
-        if( $render !== FALSE ){
-            
-            $render->setLayout()->display();
-        }
+        //var_dump(get_class($this));
         
-        return $this;
+        //var_dump(\CodersApp::appRoot('coders-digital-creator'));
+        
+        $this->displayView($request)->display();
+        
+        return TRUE;
     }
 }

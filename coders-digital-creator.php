@@ -17,8 +17,10 @@
 add_action('plugins_loaded',function(){
     
     if( defined('CODERS_FRAMEWORK_BASE') && class_exists('CodersApp') ){
-        
-        if( CodersApp::init('coders-digital-creator') ){
+
+        $app = explode('/', preg_replace('/\\\\/', '/', __DIR__));
+        //var_dump($app);
+        if( CodersApp::init( $app[ count($app) - 1] ) ){
             
         }
     }

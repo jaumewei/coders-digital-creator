@@ -9,19 +9,10 @@ class CodersDigitalCreatorApp extends CodersApp{
     protected final function __construct(  ) {
         
         $this->register('test',parent::TYPE_PROVIDERS)
-                ->register('test', parent::TYPE_MODELS, TRUE );
+                ->register('test', parent::TYPE_MODELS, TRUE )
+                ->registerAdminMenu('Main');
         
         parent::__construct( 'digitor' );
-    }
-    /**
-     * 
-     * @return \CODERS\Framework\Controller[]
-     */
-    protected final function importAdminMenu() {
-        
-        return array(
-            'main' => $this->createController('Main')
-        );
     }
     /**
      * 
@@ -51,17 +42,6 @@ class CodersDigitalCreatorApp extends CodersApp{
                 'en_US' => 'affiliates',
             ),
         );
-    }
-    /**
-     * @return \CodersDigitalCreatorApp
-     */
-    public final function response() {
-        
-        //before response
-        
-        return parent::response();
-        
-        //after response
     }
 }
 

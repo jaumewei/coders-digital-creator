@@ -4,10 +4,11 @@
  *
  * @author Coder01
  */
-final class DashboardController extends \CODERS\Framework\Controller{
+final class DashboardController extends \CODERS\Framework\Response{
     
     protected function default_action(\CODERS\Framework\Request $request = NULL) {
         
+        var_dump($request);
     }
 
     public function getPageTitle() {

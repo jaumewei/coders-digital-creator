@@ -2,7 +2,7 @@
 
 defined('ABSPATH') or die;
 
-final class MainController extends \CODERS\Framework\Controller{
+final class MainController extends \CODERS\Framework\Response{
     
     /**
      * @param \CODERS\Framework\Request $request
@@ -10,11 +10,11 @@ final class MainController extends \CODERS\Framework\Controller{
      */
     protected function default_action( \CODERS\Framework\Request $request = NULL ) {
 
-        //var_dump(get_class($this));
+        var_dump(get_class($this));
         
-        //var_dump(\CodersApp::appRoot('coders-digital-creator'));
+        var_dump(\CodersApp::appRoot('coders-digital-creator'));
         
-        $this->displayView($request)->display();
+        $this->createView($request)->display();
         
         return TRUE;
     }

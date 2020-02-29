@@ -15,14 +15,15 @@
 
 //carga de la instancia
 add_action('plugins_loaded',function(){
-    
     if( defined('CODERS_FRAMEWORK_BASE') && class_exists('CodersApp') ){
-
-        $app = explode('/', preg_replace('/\\\\/', '/', __DIR__));
-        //var_dump($app);
-        if( CodersApp::init( $app[ count($app) - 1] ) ){
+        if( CodersApp::create( 'coders-digital-creator' ) ){
             
         }
+        
+        //CodersApp::registerEndPoint('testme', function( \CODERS\Framework\Request $request ){
+        //    var_dump($request);
+        //    return true;
+        //});
     }
 });
 

@@ -10,11 +10,11 @@ final class MainController extends \CODERS\Framework\Response{
      */
     protected function default_action( \CODERS\Framework\Request $request = NULL ) {
 
-        var_dump(get_class($this));
+        //var_dump(get_class($this));
         
-        var_dump(\CodersApp::appRoot('coders-digital-creator'));
+        //var_dump(\CodersApp::appRoot('coders-digital-creator'));
         
-        $this->createView($request)->display();
+        $this->createView($request)->render('default');
         
         return TRUE;
     }

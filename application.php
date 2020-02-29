@@ -2,7 +2,7 @@
 /**
  * 
  */
-class CodersDigitalCreatorApp extends CodersApp{
+class CodersDigitalCreator extends CodersApp{
     /**
      * 
      */
@@ -10,17 +10,13 @@ class CodersDigitalCreatorApp extends CodersApp{
         
         $this->register('test',parent::TYPE_PROVIDERS)
                 ->register('test', parent::TYPE_MODELS, TRUE )
-                ->registerAdminMenu('Main');
+                ->registerAdminOption('Main');
+        
+        parent::registerRoute( $this->endPoint() , $this->endPoint(), 'en_US' , 'digital-creator' );
+        parent::registerRoute( $this->endPoint() , $this->endPoint(), 'en_GB' , 'digitaler' );
+        parent::registerRoute( $this->endPoint() , $this->endPoint(), 'es_ES' , 'creador-digital' );
         
         parent::__construct( 'digitor' );
-    }
-    /**
-     * 
-     */
-    protected function __init() {
-
-        //nothing to do atm
-
     }
     /**
      * Route/Endpoint locale dictionary
@@ -31,7 +27,7 @@ class CodersDigitalCreatorApp extends CodersApp{
         //$override = parent::importRoutes();
         
         return array(
-            $this->endPointName() => array(
+            $this->endPoint() => array(
                 'es_ES' => 'creador-digital',
                 'en_US' => 'digital-creator',
                 'en_GB' => 'digitaler',
